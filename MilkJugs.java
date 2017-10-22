@@ -166,4 +166,23 @@ public class MilkJugs
 
 		return false;
 	}
+
+	/**
+     * Check whether given state is goal state
+     * 
+     * @param  state State under consideration
+     * @return  Truth value of test
+     */
+	public boolean isGoal(int[] state)
+	{
+		int[] goal = {6, 6, 0};
+
+		for (int i = 0; i < goal.length; i++) {
+			if (state[i] != goal[i]) {
+				return false;
+			}
+		}
+
+		return true;
+	}
 }
