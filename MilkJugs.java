@@ -30,7 +30,6 @@ public class MilkJugs
 		// Manipulated as a queue
 		this.frontier = new ArrayList<Node>();
 
-
 		// List of nodes already explored
 		// They are excluded from expanded frontier nodes at each iteration
 		this.explored = new ArrayList<int[]>();
@@ -142,7 +141,8 @@ public class MilkJugs
 	public boolean inFrontier(Node node)
 	{
 		for (Node curr : this.frontier) {
-			if ((curr.state[0] == node.state[0]) && (curr.state[1] == node.state[1])) {
+			if ((curr.state[0] == node.state[0]) && (curr.state[1] == node.state[1]) 
+				&& (curr.state[2] == node.state[2])) {
 				return true;
 			}
 		}
@@ -161,7 +161,7 @@ public class MilkJugs
 		for (int i = 0; i < this.explored.size(); i++) {
 			int[] curr = this.explored.get(i);
 
-			if ((curr[0] == state[0]) && (curr[1] == state[1])) {
+			if ((curr[0] == state[0]) && (curr[1] == state[1]) && (curr[2] == state[2])) {
 				return true;
 			}
 		}
