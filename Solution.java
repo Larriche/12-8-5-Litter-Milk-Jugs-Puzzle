@@ -2,7 +2,7 @@ public class Solution
 {
 	public static void main(String[] args)
 	{
-		WaterJugs jugs = new WaterJugs();
+		MilkJugs jugs = new MilkJugs();
 		Node solution_node = jugs.solve();
 
 		if (solution_node == null) {

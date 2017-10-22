@@ -1,4 +1,6 @@
 /**
+ * PUZZLE:
+ * 
  * A milkman carries a full 12 liter container of milk.
  * He needs to deliver exactly 6 liters to a customer
  * who only has 8-liter and a 5-liter container.
@@ -79,7 +81,7 @@ public class MilkJugs
 	public Action[] getFeasibleActions(int[] state)
 	{
 		ArrayList<Action> actionsList = new ArrayList<Action>();
-		String[] labels = {'x', 'y', 'z'};
+		String[] labels = {"x", "y", "z"};
 		int[] max = {12, 8, 5};
 
 		for (int i = 0; i < state.length; i++) {
@@ -107,7 +109,7 @@ public class MilkJugs
      */
 	public Node getChildNode(Node node, Action action) {
 		int[] new_state = new int[3];
-		String[] labels = {'x', 'y', 'z'};
+		String[] labels = {"x", "y", "z"};
 
         for (int i = 0; i < new_state.length; i++) {
         	new_state[i] = node.state[i];
@@ -184,5 +186,43 @@ public class MilkJugs
 		}
 
 		return true;
+	}
+
+	/**
+     * Trace out the history of steps that generated this solution
+     * and print it
+     * 
+     * @param  solution_node Node The solution node
+     * @return null
+     */
+	public void printSolution(Node solution_node)
+	{
+		ArrayList<String> steps = new ArrayList<String>();
+
+		while (solution_node.parent != null) {
+			String step = "Fill " + solution_node.action.to + " with milk from  " + 
+					solution_node.action.from + " (ie. " + solution_node.action.quantity + " jugs) New state: (";
+
+			for (int i = 0; i < solution_node.state.length; i++) {
+				step += solution_node.state[i] + "  ";
+			}
+
+			step += ")";
+
+			steps.add(step);
+
+			solution_node = solution_node.parent;
+		} 
+
+        System.out.println("x => 12 liter jug");
+        System.out.println("y => 8 liter jug");
+        System.out.println("z => 5 liter jug");
+
+		System.out.println("Steps:");
+
+		while (steps.size() > 0) {
+			String curr = steps.remove(steps.size() - 1);
+			System.out.println(curr);
+		}
 	}
 }
